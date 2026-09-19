@@ -291,19 +291,22 @@
     }
 })();
 
-// Fix mobile back button history pollution for anchor links
-$$('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+// Smooth scroll using data-target to completely prevent mobile history pollution
+document.querySelectorAll('a[data-target]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
         
-        const targetElement = document.querySelector(targetId);
+        // Close mobile menu if open
+        const navList = document.getElementById('nav-list');
+        if (navList) navList.classList.remove('active');
+
+        const targetId = link.getAttribute('data-target');
+        const targetElement = document.getElementById(targetId);
+        
         if (targetElement) {
-            e.preventDefault();
             targetElement.scrollIntoView({ 
                 behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' 
             });
-            history.replaceState(null, '', targetId);
         }
     });
 });
