@@ -37,12 +37,29 @@
         menuBtn.firstElementChild.className = 'fa-solid ' + (open ? 'fa-xmark' : 'fa-bars');
     }
     menuBtn.addEventListener('click', (e) => { e.stopPropagation(); setMenu(!navList.classList.contains('open')); });
-    $$('a', navList).forEach(a => a.addEventListener('click', () => setMenu(false)));
     document.addEventListener('click', (e) => {
         if (!navList.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
     addEventListener('resize', () => { if (innerWidth > 768) setMenu(false); });
+
+    /* ---------- In-page links (nav, logo) ----------
+       Real href="#section" links keep the page accessible and drive the scroll-spy.
+       One delegated handler cancels the default jump and scrolls smoothly instead,
+       so the URL never gets a #hash and the Back button never has extra steps to walk through. */
+    document.addEventListener('click', (e) => {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const link = e.target.closest && e.target.closest('a[href^="#"]');
+        if (!link) return;
+        e.preventDefault();
+        setMenu(false);
+        let id = link.getAttribute('href').slice(1);
+        try { id = decodeURIComponent(id); } catch (_) {}
+        const behavior = reduce ? 'auto' : 'smooth';
+        if (!id) { scrollTo({ top: 0, behavior }); return; }
+        const target = document.getElementById(id);
+        if (target) target.scrollIntoView({ behavior, block: 'start' });
+    });
 
     /* ---------- Scroll progress + back to top ---------- */
     const bar = $('#progress');
@@ -60,15 +77,15 @@
     onScroll();
     toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
 
-    /* ---------- Active nav link ---------- */
+    /* ---------- Active nav link (scroll-spy) ---------- */
     const links = $$('#nav-list a');
     const linkMap = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
     const spy = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-            links.forEach(l => l.classList.remove('active'));
+            links.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
             const link = linkMap.get(entry.target.id);
-            if (link) link.classList.add('active');
+            if (link) { link.classList.add('active'); link.setAttribute('aria-current', 'true'); }
         });
     }, { rootMargin: '-40% 0px -55% 0px' });
     ['top', ...linkMap.keys()].forEach(id => { const s = document.getElementById(id); if (s) spy.observe(s); });
@@ -83,14 +100,29 @@
         });
     });
 
+    /* ---------- PDF frames ----------
+       location.replace() loads the PDF without adding a session-history entry,
+       so opening the resume or slides never adds steps to the Back button. */
+    function loadFrame(frame) {
+        const src = frame && frame.dataset.src;
+        if (!src || frame.dataset.loaded) return;
+        frame.dataset.loaded = '1';
+        try {
+            frame.contentWindow.location.replace(new URL(src, location.href).href);
+        } catch (e) {
+            frame.setAttribute('src', src);
+        }
+    }
+
     /* ---------- Dialogs ---------- */
     $$('[data-open]').forEach(btn => btn.addEventListener('click', () => {
         const dlg = document.getElementById(btn.dataset.open);
+        if (!dlg) return;
         const frame = $('iframe[data-src]', dlg);
         if (frame && !pdfInline) { window.open(frame.dataset.src.split('#')[0], '_blank', 'noopener'); return; }
-        if (frame && !frame.getAttribute('src')) frame.setAttribute('src', frame.dataset.src);
         dlg.showModal();
         document.body.classList.add('locked');
+        if (frame) loadFrame(frame);
     }));
     $$('dialog').forEach(dlg => {
         dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
@@ -128,7 +160,7 @@
     const slidesFrame = $('iframe', viewerBox);
     if (pdfInline) {
         new IntersectionObserver((entries, obs) => {
-            if (entries[0].isIntersecting) { slidesFrame.src = slidesFrame.dataset.src; obs.disconnect(); }
+            if (entries[0].isIntersecting) { loadFrame(slidesFrame); obs.disconnect(); }
         }, { rootMargin: '400px' }).observe(slidesFrame);
     } else {
         viewerBox.classList.add('no-inline');
@@ -290,23 +322,3 @@
         }).observe(canvas);
     }
 })();
-
-// Smooth scroll using data-target to completely prevent mobile history pollution
-document.querySelectorAll('a[data-target]').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        // Close mobile menu if open
-        const navList = document.getElementById('nav-list');
-        if (navList) navList.classList.remove('active');
-
-        const targetId = link.getAttribute('data-target');
-        const targetElement = document.getElementById(targetId);
-        
-        if (targetElement) {
-            targetElement.scrollIntoView({ 
-                behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' 
-            });
-        }
-    });
-});
