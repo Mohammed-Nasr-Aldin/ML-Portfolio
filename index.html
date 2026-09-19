@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Nasr | ML Portfolio & Masterclass</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- KaTeX CSS & JS for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });">
+    </script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <a href="#" class="logo" id="logo-top"><i class="fa-solid fa-brain"></i> Mohamed <span>Nasr</span></a>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#curriculum">Curriculum</a></li>
+                <li><a href="#capstone">Capstone</a></li>
+                <li><a href="#mentors">Mentors</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Bio & Custom Colored Hover Socials -->
+    <section class="hero">
+        <div class="hero-badge"><i class="fa-solid fa-graduation-cap"></i> STP Machine Learning Masterclass</div>
+        <h1>Mohammed Nasr</h1>
+        <div class="hero-subtitle">Electronics and Communications Engineering (ECE) Student & Machine Learning Practitioner</div>
+        <p>Passionate about bridging hardware engineering and artificial intelligence. Specialized in building end-to-end machine learning pipelines, data analytics, and production-ready applications.</p>
+        
+        <div class="hero-socials">
+            <a href="https://github.com/Mohammed-Nasr-Aldin" target="_blank" class="social-github"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/mohammed-nasreldin" target="_blank" class="social-linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="https://wa.me/201156108363" target="_blank" class="social-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <a href="mailto:mohammednasrsmail@gmail.com" class="social-email"><i class="fa-solid fa-envelope"></i> Email</a>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" id="open-resume-btn">
+                <i class="fa-solid fa-file-pdf"></i> View Resume (CV)
+            </button>
+            <a href="https://creditscore-dashboard.streamlit.app/" target="_blank" class="btn btn-secondary" style="border-color: #ff4b4b; color: #ff4b4b;">
+                <i class="fa-solid fa-rocket"></i> Live App
+            </a>
+        </div>
+    </section>
+
+    <!-- Detailed Curriculum Sessions -->
+    <section id="curriculum" class="container reveal">
+        <h2 class="section-title">Detailed Curriculum</h2>
+        <p class="section-subtitle">In-depth breakdown of mathematical concepts, code notebooks, and data sources.</p>
+        
+        <div class="clean-flow-list">
+            <!-- Session 1 -->
+            <div class="flow-item">
+                <span class="session-badge">Session 01</span>
+                <h3>Exploratory Data Analysis & Outlier Detection</h3>
+                <p>Establishing actuarial foundations, data sanitation protocols, and statistical distribution analysis on medical healthcare records.</p>
+                <ul class="flow-details">
+                    <li><i class="fa-solid fa-circle"></i> Tukey's Fences $IQR = Q_3 - Q_1$</li>
+                    <li><i class="fa-solid fa-circle"></i> Missing value central tendency imputation</li>
+                    <li><i class="fa-solid fa-circle"></i> Pearson & Spearman correlation measurements</li>
+                </ul>
+                <a href="https://github.com/Mohammed-Nasr-Aldin/ML-with-STP/blob/main/notebooks/EDA_assignment.ipynb" target="_blank" class="text-link">
+                    <i class="fa-solid fa-code"></i> View Jupyter Notebook
+                </a>
+            </div>
+
+            <!-- Session 2 -->
+            <div class="flow-item">
+                <span class="session-badge">Session 02</span>
+                <h3>Continuous Optimization & Regularization</h3>
+                <p>Solving continuous estimation problems through Ordinary Least Squares and gradient convergence dynamics.</p>
+                <ul class="flow-details">
+                    <li><i class="fa-solid fa-circle"></i> Normal Equation closed-form vs Gradient Descent</li>
+                    <li><i class="fa-solid fa-circle"></i> L1 (Lasso) and L2 (Ridge) shrinkage penalties</li>
+                    <li><i class="fa-solid fa-circle"></i> Z-Score standardization & Min-Max scaling</li>
+                </ul>
+                <a href="https://github.com/Mohammed-Nasr-Aldin/ML-with-STP/blob/main/notebooks/Linear_Regression_assignment.ipynb" target="_blank" class="text-link">
+                    <i class="fa-solid fa-code"></i> View Jupyter Notebook
+                </a>
+            </div>
+
+            <!-- Session 3 -->
+            <div class="flow-item">
+                <span class="session-badge">Session 03</span>
+                <h3>Logistic Classification & Validation Diagnostics</h3>
+                <p>Mapping linear combiners to probability spaces using Sigmoid transformations and cross-entropy optimization.</p>
+                <ul class="flow-details">
+                    <li><i class="fa-solid fa-circle"></i> Binary Cross-Entropy loss function derivation</li>
+                    <li><i class="fa-solid fa-circle"></i> Confusion Matrix, Precision, Recall, and $F_1\text{-score}$</li>
+                    <li><i class="fa-solid fa-circle"></i> Stratified K-Fold cross-validation strategy</li>
+                </ul>
+                <a href="https://github.com/Mohammed-Nasr-Aldin/ML-with-STP/blob/main/notebooks/LogisticRegression_Assignment.ipynb" target="_blank" class="text-link">
+                    <i class="fa-solid fa-code"></i> View Jupyter Notebook
+                </a>
+            </div>
+
+            <!-- Session 4 -->
+            <div class="flow-item">
+                <span class="session-badge">Session 04</span>
+                <h3>Decision Trees & Random Forest Ensembles</h3>
+                <p>Non-parametric hierarchical partitioning, impurity measures, and bootstrap aggregating for variance reduction.</p>
+                <ul class="flow-details">
+                    <li><i class="fa-solid fa-circle"></i> Gini Impurity node splitting criteria</li>
+                    <li><i class="fa-solid fa-circle"></i> Random Forest de-correlation with feature sub-sampling</li>
+                    <li><i class="fa-solid fa-circle"></i> Hyperparameter tuning via GridSearchCV (Achieved 87% accuracy)</li>
+                </ul>
+                <a href="https://github.com/Mohammed-Nasr-Aldin/ML-with-STP/blob/main/notebooks/trees-assignment.ipynb" target="_blank" class="text-link">
+                    <i class="fa-solid fa-code"></i> View Jupyter Notebook
+                </a>
+            </div>
+
+            <!-- Session 5 -->
+            <div class="flow-item">
+                <span class="session-badge">Session 05</span>
+                <h3>Support Vector Machines & Neural Units</h3>
+                <p>Convex optimization for hyper-plane margin maximization and non-linear kernel transformations.</p>
+                <ul class="flow-details">
+                    <li><i class="fa-solid fa-circle"></i> Radial Basis Function (RBF) kernel projection</li>
+                    <li><i class="fa-solid fa-circle"></i> Artificial perceptron mechanics & activation functions</li>
+                    <li><i class="fa-solid fa-circle"></i> E-commerce sentiment comparative analysis</li>
+                </ul>
+                <a href="https://github.com/Mohammed-Nasr-Aldin/ML-with-STP/blob/main/notebooks/svm_assignment.ipynb" target="_blank" class="text-link">
+                    <i class="fa-solid fa-code"></i> View Jupyter Notebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Capstone Project & PDF Viewer -->
+    <section id="capstone" class="container reveal">
+        <h2 class="section-title">Featured Capstone Project</h2>
+        <p class="section-subtitle">Credit Score Prediction System analyzing 100,000 banking customer profiles.</p>
+        
+        <div class="capstone-layout">
+            <div>
+                <h3 style="font-size: 1.35rem; margin-bottom: 0.8rem;">Credit Score Classification</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.2rem; font-size: 0.95rem;">
+                    Built to predict customer default risk categories (Good, Standard, Poor) through engineered financial ratios and optimized ensemble classifiers.
+                </p>
+                <ul class="flow-details" style="margin-bottom: 1.5rem;">
+                    <li><i class="fa-solid fa-circle"></i> <strong>76% Test Accuracy</strong> using Random Forest</li>
+                    <li><i class="fa-solid fa-circle"></i> <strong>9 High-Impact Drivers</strong> selected from 18 raw inputs</li>
+                    <li><i class="fa-solid fa-circle"></i> <strong>Engineered Ratios:</strong> Debt-to-Income & EMI ratios</li>
+                </ul>
+                <div class="btn-group" style="margin-bottom: 2rem;">
+                    <a href="https://creditscore-dashboard.streamlit.app/" target="_blank" class="text-link" style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);"><i class="fa-solid fa-globe"></i> Live App</a>
+                    <a href="https://github.com/Mohammed-Nasr-Aldin/Credit-Score-Dashboard" target="_blank" class="text-link" style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);"><i class="fa-brands fa-github"></i> Repository</a>
+                </div>
+            </div>
+
+            <!-- PDF Viewer -->
+            <div class="pdf-viewer-container">
+                <div class="pdf-viewer-header">
+                    <span><i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i> credit-score-slides.pdf</span>
+                    <a href="credit-score-slides.pdf" target="_blank" style="color: var(--accent-color); text-decoration: none;"><i class="fa-solid fa-external-link"></i> Fullscreen</a>
+                </div>
+                <iframe src="credit-score-slides.pdf" class="pdf-frame" title="Capstone Slide Deck"></iframe>
+            </div>
+        </div>
+
+        <!-- Full Width Visible Certificate Section (No Boxes) -->
+        <div class="certificate-full-display">
+            <h3 style="font-size: 1.4rem; margin-bottom: 0.3rem;">Track Completion Certificate</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.5rem;">Official verification of masterclass completion.</p>
+            <img src="certificate.jpeg" alt="Track Completion Certificate" class="certificate-img-element" id="cert-img-preview">
+        </div>
+    </section>
+
+    <!-- Mentors Section - Stacked Vertically, No Boxes -->
+    <section id="mentors" class="container reveal">
+        <h2 class="section-title">Acknowledgments & Mentors</h2>
+        <p class="section-subtitle">Special recognition and appreciation to the instructors guiding the track.</p>
+        
+        <div class="clean-flow-list" style="gap: 2.5rem;">
+            <div class="flow-item">
+                <h3>Ali Amr</h3>
+                <p style="margin-bottom: 0.4rem;">ML Instructor & Mentor</p>
+                <a href="https://www.linkedin.com/in/aliamr182005" target="_blank" class="text-link">
+                    <i class="fa-brands fa-linkedin"></i> Connect on LinkedIn
+                </a>
+            </div>
+            <div class="flow-item">
+                <h3>Shams Magdy</h3>
+                <p style="margin-bottom: 0.4rem;">ML Instructor & Mentor</p>
+                <a href="https://www.linkedin.com/in/shams-magdy" target="_blank" class="text-link">
+                    <i class="fa-brands fa-linkedin"></i> Connect on LinkedIn
+                </a>
+            </div>
+            <div class="flow-item">
+                <h3>Mariem Tarek</h3>
+                <p style="margin-bottom: 0.4rem;">ML Instructor & Mentor</p>
+                <a href="https://www.linkedin.com/in/mariem-tarek" target="_blank" class="text-link">
+                    <i class="fa-brands fa-linkedin"></i> Connect on LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Clean Flow List (No Boxes) -->
+    <section id="contact" class="container reveal">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Reach out for collaborations, discussions, or professional opportunities.</p>
+        
+        <div class="clean-flow-list" style="gap: 2.5rem;">
+            <div class="flow-item">
+                <h3>WhatsApp</h3>
+                <p style="margin-bottom: 0.4rem; color: var(--text-muted);">+20 115 610 8363</p>
+                <a href="https://wa.me/201156108363" target="_blank" class="text-link" style="color: var(--whatsapp-color);">
+                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+            <div class="flow-item">
+                <h3>Email Address</h3>
+                <p style="margin-bottom: 0.4rem; color: var(--text-muted);">mohammednasrsmail@gmail.com</p>
+                <a href="mailto:mohammednasrsmail@gmail.com" class="text-link" style="color: var(--email-color);">
+                    <i class="fa-solid fa-envelope"></i> Send an Email
+                </a>
+            </div>
+            <div class="flow-item">
+                <h3>LinkedIn Profile</h3>
+                <p style="margin-bottom: 0.4rem; color: var(--text-muted);">Mohammed Nasreldin</p>
+                <a href="https://www.linkedin.com/in/mohammed-nasreldin" target="_blank" class="text-link" style="color: var(--linkedin-color);">
+                    <i class="fa-brands fa-linkedin"></i> View LinkedIn Profile
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mohammed Nasr Eldin. Built with passion for Machine Learning & Engineering.</p>
+    </footer>
+
+    <!-- Resume Modal -->
+    <div class="modal" id="resume-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Resume Preview - Mohammed Nasr Eldin</h3>
+                <button class="close-modal" id="close-resume-modal">&times;</button>
+            </div>
+            <iframe src="resume.pdf" style="width: 100%; height: 100%; border: none;" title="Resume PDF"></iframe>
+        </div>
+    </div>
+
+    <!-- Certificate Modal (Zoom View) -->
+    <div class="modal" id="cert-modal">
+        <div class="modal-content" style="max-width: 950px; height: auto; background: var(--bg-primary);">
+            <div class="modal-header">
+                <h3>Certificate Verification (Full View)</h3>
+                <button class="close-modal" id="close-cert-modal">&times;</button>
+            </div>
+            <div style="padding: 1rem; text-align: center;">
+                <img src="certificate.jpeg" alt="Certificate Full" style="max-width: 100%; height: auto; border-radius: 8px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>
