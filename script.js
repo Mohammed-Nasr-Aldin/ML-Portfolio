@@ -290,3 +290,20 @@
         }).observe(canvas);
     }
 })();
+
+// Fix mobile back button history pollution for anchor links
+$$('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({ 
+                behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' 
+            });
+            history.replaceState(null, '', targetId);
+        }
+    });
+});
