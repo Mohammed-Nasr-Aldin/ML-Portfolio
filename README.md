@@ -1,6 +1,6 @@
-# 🧠 Mohammed Nasr Eldin | ML Portfolio & Masterclass
+# Mohammed Nasr Eldin | ML Portfolio & Masterclass
 
-A professional, minimalist, and interactive machine learning portfolio website built with native HTML5, CSS3, and modern JavaScript. Designed for the STP Machine Learning Track, featuring responsive mobile navigation, dynamic KaTeX mathematical rendering, interactive PDF viewers, and project modals.
+Personal portfolio and project repository documenting my work in the STP Machine Learning Track. This site compiles my core session notebooks, mathematical derivations, and end-to-end deployment projects.
 
 🌐 **Live Website**: [Mohammed-Nasr-Aldin.github.io/ML-Portfolio](https://Mohammed-Nasr-Aldin.github.io/ML-Portfolio)
 
