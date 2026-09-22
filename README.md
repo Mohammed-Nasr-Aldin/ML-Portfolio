@@ -43,11 +43,37 @@ Special thanks to the instructors guiding the STP Machine Learning Track:
 
 ---
 
-## 📫 Get In Touch
-- **WhatsApp**: [+20 115 610 8363](https://wa.me/201156108363)
-- **Email**: [mohammednasrsmail@gmail.com](mailto:mohammednasrsmail@gmail.com)
-- **LinkedIn**: [Mohammed Nasreldin](https://www.linkedin.com/in/mohammed-nasreldin)
-- **GitHub**: [@Mohammed-Nasr-Aldin](https://github.com/Mohammed-Nasr-Aldin)
+## <a id="contact"></a>📬 Contact
 
----
-*© 2026 Mohammed Nasr Eldin. Built with passion for Machine Learning & Engineering.*
+Reach out for collaborations, discussions, or opportunities. 🤝
+
+<table align="center">
+  <tr>
+    <td align="center" width="120">
+      <a href="https://github.com/Mohammed-Nasr-Aldin">
+        <img src="https://cdn.simpleicons.org/github/FFFFFF#gh-dark-mode-only" alt="GitHub" width="44" height="44">
+        <br><sub><b>GitHub</b></sub>
+      </a>
+    </td>
+    <td align="center" width="120">
+      <a href="https://www.linkedin.com/in/mohammed-nasreldin">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="44" height="44">
+        <br><sub><b>LinkedIn</b></sub>
+      </a>
+    </td>
+    <td align="center" width="120">
+      <a href="https://wa.me/201156108363">
+        <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp" width="44" height="44">
+        <br><sub><b>WhatsApp</b></sub>
+      </a>
+    </td>
+    <td align="center" width="120">
+      <a href="mailto:mohammednasrsmail@gmail.com">
+        <img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Email" width="44" height="44">
+        <br><sub><b>Email</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<p align="center"><sub>© Mohammed Nasr Eldin</sub></p>
