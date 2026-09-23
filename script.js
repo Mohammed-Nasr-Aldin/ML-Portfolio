@@ -6,28 +6,12 @@
     // Phones like Android Chrome can't show a PDF inside a page: they download it or open another page instead.
     const pdfInline = navigator.pdfViewerEnabled !== false;
 
-    // Canvas state (declared first so the theme code can use it)
-    let colors = { accent: '#6C9BFF', muted: '#93A0B8', line: '#24314D' };
+    // Canvas state (fixed light-theme colours, read once from CSS so they stay in sync with style.css)
+    let colors = { accent: '#2A55E5', muted: '#4A5872', line: '#CBD3DF' };
     let W = 0, H = 0, scanX = 0, targetX = 0, pointerActive = false;
 
-    /* ---------- Theme ---------- */
-    const themeBtn = $('#theme-toggle');
-    const themeMeta = $('meta[name="theme-color"]');
-    function applyTheme(t) {
-        root.setAttribute('data-theme', t);
-        themeBtn.setAttribute('aria-checked', String(t === 'dark'));
-        themeMeta.setAttribute('content', t === 'dark' ? '#0D1526' : '#F5F7FA');
-        readColors();
-        if (reduce && W) draw(1);
-    }
-    applyTheme(root.getAttribute('data-theme') || 'dark');
-    themeBtn.addEventListener('click', () => {
-        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-        try { localStorage.setItem('theme-v2', next); } catch (e) {}
-    });
-
     /* ---------- Mobile menu ---------- */
+    const header = $('#site-header');
     const menuBtn = $('#menu-toggle');
     const navList = $('#nav-list');
     function setMenu(open) {
@@ -61,14 +45,19 @@
         if (target) target.scrollIntoView({ behavior, block: 'start' });
     });
 
-    /* ---------- Scroll progress + back to top ---------- */
+    /* ---------- Scroll progress + back to top + hide/show header ----------
+       The header hides while scrolling down (past a small threshold) and
+       reappears as soon as the user scrolls up even slightly, or is near the top. */
     const bar = $('#progress');
     const toTop = $('#to-top');
     let ticking = false;
+    let lastY = scrollY;
     function onScroll() {
+        const y = scrollY;
         const h = root.scrollHeight - innerHeight;
-        bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(scrollY / h, 1) : 0) + ')';
-        toTop.classList.toggle('show', scrollY > 500);
+        bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(y / h, 1) : 0) + ')';
+        toTop.classList.toggle('show', y > 500);
+
         ticking = false;
     }
     addEventListener('scroll', () => {
@@ -77,18 +66,48 @@
     onScroll();
     toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
 
-    /* ---------- Active nav link (scroll-spy) ---------- */
+    /* ---------- Active nav link (scroll-spy) + sliding indicator ----------
+       Mirrors the Analog site's Tabs component: an <i class="nav-ind"> is measured
+       against the active link's offsetLeft/width and slid into place. Desktop only —
+       the mobile dropdown highlights the active link with a left border instead. */
+    const navInd = $('.nav-ind');
     const links = $$('#nav-list a');
     const linkMap = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+
+    function moveNavInd() {
+        if (!navInd || innerWidth <= 768) return;
+        const active = $('#nav-list a.active');
+        if (!active) { navInd.style.width = '0px'; return; }
+        navInd.style.width = active.offsetWidth + 'px';
+        navInd.style.transform = 'translateX(' + active.offsetLeft + 'px)';
+    }
+
     const spy = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
             links.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
             const link = linkMap.get(entry.target.id);
             if (link) { link.classList.add('active'); link.setAttribute('aria-current', 'true'); }
+            moveNavInd();
         });
     }, { rootMargin: '-40% 0px -55% 0px' });
     ['top', ...linkMap.keys()].forEach(id => { const s = document.getElementById(id); if (s) spy.observe(s); });
+
+    addEventListener('resize', moveNavInd);
+    document.fonts?.ready.then(moveNavInd);
+    requestAnimationFrame(moveNavInd);
+
+    /* ---------- Scroll-reveal for sections ---------- */
+    if (!reduce) {
+        const reveal = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('in'); reveal.unobserve(entry.target); }
+            });
+        }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+        $$('.block').forEach(b => reveal.observe(b));
+    } else {
+        $$('.block').forEach(b => b.classList.add('in'));
+    }
 
     /* ---------- Accordion ---------- */
     $$('.acc-item').forEach(item => {
