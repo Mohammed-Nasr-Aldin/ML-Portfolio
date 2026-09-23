@@ -5,34 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohammed Nasr | ML Portfolio</title>
     <meta name="description" content="Portfolio of Mohammed Nasr Eldin, an Electronics and Communications Engineering student and machine learning practitioner.">
-    <meta name="theme-color" content="#0D1526">
+    <meta name="theme-color" content="#0B1F4D">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧠%3C/text%3E%3C/svg%3E">
 
-    <!-- Runs before first paint: enables JS-only styles and applies the saved theme -->
-    <script>
-        (function () {
-            var d = document.documentElement;
-            d.classList.add('js');
-            var t = 'dark';
-            try { t = localStorage.getItem('theme-v2') || 'dark'; } catch (e) {}
-            d.setAttribute('data-theme', t);
-        })();
-    </script>
+    <!-- Enables JS-only styles (the staggered hero reveal) before first paint -->
+    <script>document.documentElement.classList.add('js');</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 
+    <!-- Decoupled from the header so it stays visible even while the header slides away -->
+    <div class="progress" id="progress"></div>
+
     <!-- Header -->
-    <header class="site-header">
+    <header class="site-header" id="site-header">
         <div class="header-inner wrap">
             <a href="#top" class="logo" aria-label="Back to top">
-                <span class="logo-mark">MN</span>
                 <span>Mohammed Nasr</span>
             </a>
             <nav aria-label="Main">
@@ -42,13 +36,12 @@
                     <li><a href="#mentors">Mentors</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <i class="nav-ind" aria-hidden="true"></i>
             </nav>
             <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" role="switch" aria-checked="true" aria-label="Dark mode"><span class="theme-thumb"></span><i class="fa-solid fa-sun"></i><i class="fa-solid fa-moon"></i></button>
                 <button class="icon-btn menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list"><i class="fa-solid fa-bars"></i></button>
             </div>
         </div>
-        <div class="progress" id="progress"></div>
     </header>
 
     <main>
@@ -73,10 +66,10 @@
                     </div>
                 </div>
 
-                <div class="signal" id="signal-wrap">
+                <figure class="signal" id="signal-wrap">
                     <canvas id="signal" aria-hidden="true"></canvas>
-                </div>
-                <p class="signal-caption">Move across the signal. Left of the line is the cleaned output, right of it is the raw input.</p>
+                    <figcaption class="signal-caption">Move across the signal. Left of the line is the cleaned output, right of it is the raw input.</figcaption>
+                </figure>
             </div>
         </section>
 
@@ -90,12 +83,12 @@
                 <div class="block-body">
                     <div class="acc" id="accordion">
 
-                        <div class="acc-item open">
+                        <div class="acc-item open" style="--cat:#6B4EFF">
                             <button class="acc-head" id="h1" aria-expanded="true" aria-controls="p1">
                                 <span class="acc-num">1</span>
                                 <span class="acc-title">Exploratory Data Analysis &amp; Outlier Detection</span>
                                 <span class="acc-tag">Data analysis</span>
-                                <i class="fa-solid fa-plus acc-icon"></i>
+                                <span class="acc-chev" aria-hidden="true"></span>
                             </button>
                             <div class="acc-panel" id="p1" role="region" aria-labelledby="h1"><div class="acc-inner"><div class="acc-body">
                                 <p>Actuarial foundations, data cleaning protocols, and statistical distribution analysis on medical healthcare records.</p>
@@ -108,12 +101,12 @@
                             </div></div></div>
                         </div>
 
-                        <div class="acc-item">
+                        <div class="acc-item" style="--cat:#2A55E5">
                             <button class="acc-head" id="h2" aria-expanded="false" aria-controls="p2">
                                 <span class="acc-num">2</span>
                                 <span class="acc-title">Continuous Optimization &amp; Regularization</span>
                                 <span class="acc-tag">Linear regression</span>
-                                <i class="fa-solid fa-plus acc-icon"></i>
+                                <span class="acc-chev" aria-hidden="true"></span>
                             </button>
                             <div class="acc-panel" id="p2" role="region" aria-labelledby="h2"><div class="acc-inner"><div class="acc-body">
                                 <p>Solving continuous estimation problems with Ordinary Least Squares and studying how gradient descent converges.</p>
@@ -126,12 +119,12 @@
                             </div></div></div>
                         </div>
 
-                        <div class="acc-item">
+                        <div class="acc-item" style="--cat:#0E8F6E">
                             <button class="acc-head" id="h3" aria-expanded="false" aria-controls="p3">
                                 <span class="acc-num">3</span>
                                 <span class="acc-title">Logistic Classification &amp; Validation Diagnostics</span>
                                 <span class="acc-tag">Classification</span>
-                                <i class="fa-solid fa-plus acc-icon"></i>
+                                <span class="acc-chev" aria-hidden="true"></span>
                             </button>
                             <div class="acc-panel" id="p3" role="region" aria-labelledby="h3"><div class="acc-inner"><div class="acc-body">
                                 <p>Mapping linear combinations to probabilities with the Sigmoid function and cross-entropy optimization.</p>
@@ -144,12 +137,12 @@
                             </div></div></div>
                         </div>
 
-                        <div class="acc-item">
+                        <div class="acc-item" style="--cat:#C8102E">
                             <button class="acc-head" id="h4" aria-expanded="false" aria-controls="p4">
                                 <span class="acc-num">4</span>
                                 <span class="acc-title">Decision Trees &amp; Random Forest Ensembles</span>
                                 <span class="acc-tag">Ensembles</span>
-                                <i class="fa-solid fa-plus acc-icon"></i>
+                                <span class="acc-chev" aria-hidden="true"></span>
                             </button>
                             <div class="acc-panel" id="p4" role="region" aria-labelledby="h4"><div class="acc-inner"><div class="acc-body">
                                 <p>Non-parametric hierarchical partitioning, impurity measures, and bootstrap aggregating for variance reduction.</p>
@@ -162,12 +155,12 @@
                             </div></div></div>
                         </div>
 
-                        <div class="acc-item">
+                        <div class="acc-item" style="--cat:#C77700">
                             <button class="acc-head" id="h5" aria-expanded="false" aria-controls="p5">
                                 <span class="acc-num">5</span>
                                 <span class="acc-title">Support Vector Machines &amp; Neural Units</span>
                                 <span class="acc-tag">SVM and perceptron</span>
-                                <i class="fa-solid fa-plus acc-icon"></i>
+                                <span class="acc-chev" aria-hidden="true"></span>
                             </button>
                             <div class="acc-panel" id="p5" role="region" aria-labelledby="h5"><div class="acc-inner"><div class="acc-body">
                                 <p>Convex optimization for maximum-margin hyperplanes and non-linear kernel transformations.</p>
@@ -208,9 +201,9 @@
                             </div>
                         </div>
 
-                        <div class="viewer">
+                        <figure class="viewer frame">
                             <div class="viewer-head">
-                                <span class="viewer-name"><i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> credit-score-slides.pdf</span>
+                                <span class="viewer-name"><i class="fa-solid fa-file-pdf" style="color:#C8102E"></i> credit-score-slides.pdf</span>
                                 <div class="viewer-actions">
                                     <a class="link" href="credit-score-slides.pdf" download="credit-score-slides.pdf" data-download="credit-score-slides.pdf"><i class="fa-solid fa-download"></i> Download</a>
                                     <a class="link" href="credit-score-slides.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-up-right-from-square"></i> Full screen</a>
@@ -219,13 +212,13 @@
                             <iframe data-src="credit-score-slides.pdf#toolbar=0&navpanes=0&view=FitH" title="Capstone slide deck"></iframe>
                             <p class="viewer-fallback" hidden>Slides preview isn't available in this browser. Use Download or Full screen above.</p>
                             <p class="viewer-note">Slides not showing on your phone? Tap Full screen to open the PDF.</p>
-                        </div>
+                        </figure>
                     </div>
 
                     <div class="cert">
                         <h3>Track completion certificate</h3>
                         <p>Official verification of masterclass completion. Tap the image to zoom.</p>
-                        <button class="cert-btn" data-open="cert-dialog" aria-label="Zoom certificate">
+                        <button class="cert-btn frame" data-open="cert-dialog" aria-label="Zoom certificate">
                             <img src="certificate.jpeg" alt="Track completion certificate" loading="lazy">
                         </button>
                     </div>
@@ -321,7 +314,6 @@
     <footer class="site-footer">
         <div class="wrap footer-inner">
             <p>&copy; <span id="year">2026</span> Mohammed Nasr Eldin</p>
-            <p class="footer-note">Built with passion for Machine Learning &amp; Engineering</p>
         </div>
     </footer>
 
@@ -352,6 +344,6 @@
         <img src="certificate.jpeg" alt="Track completion certificate, full view" loading="lazy">
     </dialog>
 
-    <script src="script.js?v=7"></script>
+    <script src="script.js?v=9"></script>
 </body>
 </html>
